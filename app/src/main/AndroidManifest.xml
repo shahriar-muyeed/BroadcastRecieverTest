@@ -18,7 +18,8 @@
         </activity>
         <receiver android:name=".BroadcastReciever">
         <intent-filter>
-            <action android:name="android.intent.action.BATTERY_CHANGED"/>
+            <action android:name="android.intent.action.customBroadcastName"></action>
+            <category android:name="android.intent.category.DEFAULT"></category>
 
         </intent-filter>
         </receiver>

@@ -5,13 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.BatteryManager;
-import android.widget.Switch;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class BroadcastReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.d("intentvalue", String.valueOf(intent));
+
+        String ac= intent.getAction();
+        if(ac!=null && ac.equals("android.intent.action.customBroadcastName")){
+            Toast.makeText(context, "Broadcast was sent", Toast.LENGTH_SHORT).show();
+        }
+
         if(ConnectivityManager.CONNECTIVITY_ACTION.equals (intent.getAction())){
              boolean noWifi=intent.getBooleanExtra(
                      ConnectivityManager.EXTRA_NO_CONNECTIVITY, false
@@ -54,7 +61,7 @@ public class BroadcastReciever extends BroadcastReceiver {
             status.setText(msg);
 
             int level=intent.getIntExtra(BatteryManager.EXTRA_LEVEL,-1);
-            number.setText(level+" %");
+            number.setText(level+"%");
 
 
         }
